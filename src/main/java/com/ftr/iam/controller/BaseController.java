@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 public class BaseController {
-
+    // TODO: Add 400 errors to bad requests
     private static final Logger LOGGER = LogManager.getLogger(BaseController.class);
 
     @ExceptionHandler
