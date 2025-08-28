@@ -105,13 +105,13 @@ public class AuthService {
             try {
                 token = jwtService.generateToken(userDetails);
             } catch (Exception e) {
-                throw new RuntimeException("Error generating token, throwing error: {}", e);
+                throw new RuntimeException("Error generating token, throwing error", e);
             }
             
             return token;
             
         } catch (Exception e) {
-            throw new RuntimeException("Invalid Username/Password, not generating token. Error: {}", e);
+            throw new RuntimeException("Invalid Username/Password", e);
         }
     }
     
