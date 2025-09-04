@@ -1,4 +1,5 @@
 spring.application.name=iam
+server.port=7200
 
 # DB Configs
 spring.datasource.url=jdbc:postgresql://<hostname>:<port>/<database>
