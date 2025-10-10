@@ -1,8 +1,9 @@
 # FTR IAM Authentication API Documentation
 
-This document describes the authentication API endpoints for the FTR IAM service.
+This document is AI generated and helps describe the authentication API endpoints for the FTR IAM service.
 
 ## Base URL
+
 ```
 http://localhost:7200
 ```
@@ -10,9 +11,11 @@ http://localhost:7200
 ## Authentication Flow
 
 ### 1. User Registration
-**Endpoint:** `POST /api/auth/register`
+
+**Endpoint:** `POST /api/iam/auth/register`
 
 **Request Body:**
+
 ```json
 {
     "username": "john_doe",
@@ -22,6 +25,7 @@ http://localhost:7200
 ```
 
 **Response (Success):**
+
 ```json
 {
     "token": "eyJhbGciOiJIUzI1NiJ9...",
@@ -32,6 +36,7 @@ http://localhost:7200
 ```
 
 **Response (Error):**
+
 ```json
 {
     "token": null,
@@ -42,9 +47,11 @@ http://localhost:7200
 ```
 
 ### 2. User Login
-**Endpoint:** `POST /api/auth/login`
+
+**Endpoint:** `POST /api/iam/auth/login`
 
 **Request Body:**
+
 ```json
 {
     "username": "john_doe",
@@ -53,6 +60,7 @@ http://localhost:7200
 ```
 
 **Response (Success):**
+
 ```json
 {
     "token": "eyJhbGciOiJIUzI1NiJ9...",
@@ -63,6 +71,7 @@ http://localhost:7200
 ```
 
 **Response (Error):**
+
 ```json
 {
     "token": null,
@@ -72,7 +81,10 @@ http://localhost:7200
 }
 ```
 
+**Note:** The JWT token now includes the `userId` as a claim, which can be extracted and verified on the backend.
+
 ### 3. Protected Endpoints
+
 To access protected endpoints, include the JWT token in the Authorization header:
 
 ```
@@ -86,6 +98,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
 The system uses two tables:
 
 ### users table
+
 - `user_id` (UUID, Primary Key)
 - `username` (String, Unique)
 - `email` (String, Unique)
@@ -95,6 +108,7 @@ The system uses two tables:
 - `updated_date` (Date)
 
 ### users_info table
+
 - `user_id` (UUID, Primary Key, Foreign Key to users)
 - `username` (String)
 - `salt` (String) - Random salt for password hashing
@@ -117,8 +131,9 @@ The system uses two tables:
 ### Using curl
 
 1. **Register a new user:**
+
 ```bash
-curl -X POST http://localhost:7200/api/auth/register \
+curl -X POST http://localhost:7200/api/iam/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
@@ -128,8 +143,9 @@ curl -X POST http://localhost:7200/api/auth/register \
 ```
 
 2. **Login:**
+
 ```bash
-curl -X POST http://localhost:7200/api/auth/login \
+curl -X POST http://localhost:7200/api/iam/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
@@ -138,6 +154,7 @@ curl -X POST http://localhost:7200/api/auth/login \
 ```
 
 3. **Access protected endpoint:**
+
 ```bash
 curl -X GET http://localhost:7200/api/test/protected \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
@@ -146,12 +163,13 @@ curl -X GET http://localhost:7200/api/test/protected \
 ### Using Postman
 
 1. Set the base URL to `http://localhost:7200`
-2. For registration/login, use POST requests to `/api/auth/register` or `/api/auth/login`
+2. For registration/login, use POST requests to `/api/iam/auth/register` or `/api/iam/auth/login`
 3. For protected endpoints, add the JWT token to the Authorization header as `Bearer YOUR_TOKEN`
 
 ## Error Handling
 
 The API returns appropriate HTTP status codes:
+
 - `200 OK`: Successful operation
 - `400 Bad Request`: Validation errors or business logic errors
 - `401 Unauthorized`: Invalid credentials or missing token
@@ -169,4 +187,4 @@ The application is configured to run on port 7200 and connect to a PostgreSQL da
 - PostgreSQL
 - JWT (JJWT library)
 - Lombok
-- Validation API 
+- Validation API

@@ -1,6 +1,5 @@
 package com.ftr.iam.service;
 
-import com.ftr.iam.controller.response.AuthResponse;
 import com.ftr.iam.dto.AuthDto;
 import com.ftr.iam.dto.LoginRequest;
 import com.ftr.iam.dto.RegisterRequest;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 
@@ -103,7 +101,7 @@ public class AuthService {
             
             String token = null;
             try {
-                token = jwtService.generateToken(userDetails);
+                token = jwtService.generateToken(userDetails, user.getUserId());
             } catch (Exception e) {
                 throw new RuntimeException("Error generating token, throwing error", e);
             }
