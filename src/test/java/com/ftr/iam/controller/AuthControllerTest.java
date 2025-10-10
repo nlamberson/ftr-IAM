@@ -1,8 +1,5 @@
 package com.ftr.iam.controller;
 
-import com.ftr.iam.controller.response.AuthResponse;
-import com.ftr.iam.controller.response.ErrorResponse;
-import com.ftr.iam.controller.response.Response;
 import com.ftr.iam.dto.AuthDto;
 import com.ftr.iam.dto.LoginRequest;
 import com.ftr.iam.dto.RegisterRequest;
